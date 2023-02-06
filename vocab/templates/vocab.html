@@ -81,7 +81,9 @@
             </div>
          </div>
          <p id="error"> </p>
-         <br>
+         <div class="found-header">
+            <h2>You Found </h2>
+         </div>
          <p id="response"> </p>
 
          <script>
@@ -111,16 +113,16 @@
                                $("#attempt").val("");
                                $("#error").html("");
                             }
-                            else if (rsval == 'incorrect') {
+                            else if (rsval == 'incorrect' || rsval == 'found') {
                                $("#error").html(response_txt);
                                $("#attempt").val("");
                             }
                             else if (rsval == 'done') {
-                               console.log("here");
+                               console.log("game finished");
                                window.location.href = "/success";
                             }
                             else {
-                               $("#error").html(rsval);
+                               console.log(response_txt)
                             }
                            }
                        );

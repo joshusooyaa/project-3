@@ -59,14 +59,16 @@ def index():
     return flask.render_template('vocab.html')
 
 
+"""
 @app.route("/keep_going")
 def keep_going():
-    """
+    \"""
     After initial use of index, we keep the same scrambled
     word and try to get more matches
-    """
+    \"""
     flask.g.vocab = WORDS.as_list()
     return flask.render_template('vocab.html')
+"""
 
 
 @app.route("/success")
@@ -108,12 +110,11 @@ def check():
         flask.session["matches"] = matches
         rslt = {"response": 'match', "txt": ""}
     elif text in matches:
-        rslt = {"response": "You already found {}".format(text), "txt": ""}
+        rslt = {"response": "found", "txt": "You already found {}".format(text)}
     elif not matched:
-        # rslt = {"response": "{} isn't in the list of words".format(text)}
-        result = {"response": "none", "txt": ""}
+        rslt = {"response": "none", "txt": "{} isn't in the list of words".format(text)}
     elif not in_jumble:
-        rslt = {"txt": '"{}" can\'t be made from the letters {}'.format(text, jumble), "response": "incorrect"}
+        rslt = {"response": "incorrect", "txt": '"{}" can\'t be made from the letters {}'.format(text, jumble)}
     else:
         app.logger.debug("This case shouldn't happen!")
         assert False # Raises AssertionError
