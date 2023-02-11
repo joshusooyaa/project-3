@@ -108,11 +108,11 @@ def check():
         # Cool, they found a new word
         matches.append(text)
         flask.session["matches"] = matches
-        rslt = {"response": 'match', "txt": ""}
+        rslt = {"response": 'match', "txt": ""}   
     elif text in matches:
         rslt = {"response": "found", "txt": "You already found {}".format(text)}
-    elif not matched:
-        rslt = {"response": "none", "txt": "{} isn't in the list of words".format(text)}
+    elif not matched and text != "":
+        rslt = {"response": "wrong_word", "txt": "{} isn't in the list of words".format(text)}
     elif not in_jumble:
         rslt = {"response": "incorrect", "txt": '"{}" can\'t be made from the letters {}'.format(text, jumble)}
     else:

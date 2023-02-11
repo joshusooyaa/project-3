@@ -121,8 +121,8 @@
                                console.log("game finished");
                                window.location.href = "/success";
                             }
-                            else {
-                               console.log(response_txt)
+                            else if (rsval == 'wrong_word') {
+                               $("#error").html(response_txt);
                             }
                            }
                        );
